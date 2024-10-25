@@ -9,20 +9,20 @@ type Props = Restaurant;
 
 export default function RestaurantCard({
   id,
-  name,
-  description,
-  image,
-  rating,
-  tags
+  titulo: name,
+  descricao: description,
+  capa: image,
+  avaliacao: rating,
+  destacado: highlighted,
+  tipo: cuisineType
 }: Props) {
   const navigate = useNavigate();
 
   return (
     <s.Card>
       <s.TagContainer>
-        {tags.map((t, index) => (
-          <s.Tag key={index}>{t}</s.Tag>
-        ))}
+        {highlighted && <s.Tag>Destaque da semana</s.Tag>}
+        <s.Tag capitalize>{cuisineType}</s.Tag>
       </s.TagContainer>
       <s.CardImage src={image} alt={name} />
       <s.CardBody>
@@ -38,7 +38,10 @@ export default function RestaurantCard({
             <p>{description}</p>
           </div>
           <div>
-            <button type="button" onClick={() => navigate(`/restaurant/${id}`)}>
+            <button
+              type="button"
+              onClick={() => navigate(`/restaurante/${id}`)}
+            >
               Saiba mais
             </button>
           </div>

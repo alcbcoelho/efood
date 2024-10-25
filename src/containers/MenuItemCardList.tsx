@@ -6,10 +6,12 @@ interface Props {
   restaurant: Restaurant;
 }
 
-export default function MenuItemCardList({ restaurant: { menuItems } }: Props) {
+export default function MenuItemCardList({
+  restaurant: { cardapio: menuItems }
+}: Props) {
   return (
     <s.MenuItemCardList>
-      {menuItems.map((i) => (
+      {menuItems?.map((i) => (
         <li key={i.id}>
           <MenuItemCard {...i} />
         </li>

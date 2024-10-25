@@ -7,6 +7,10 @@ interface FlexContainerProps {
   height?: string;
 }
 
+interface TagProps {
+  capitalize?: boolean;
+}
+
 const Card = styled.div`
   position: relative;
   height: 100%;
@@ -70,10 +74,11 @@ const TagContainer = styled.div`
   right: 16px;
 `;
 
-const Tag = styled.span`
+const Tag = styled.span<TagProps>`
   display: inline-block;
   padding: 6px 4px;
   margin-right: 8px;
+  text-transform: ${({ capitalize }) => (capitalize ? "capitalize" : "none")};
   font-size: 12px;
   font-weight: 700;
   color: ${colors.white};

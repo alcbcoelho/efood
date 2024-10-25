@@ -33,6 +33,7 @@ const Banner = styled.div`
   span {
     display: block;
     font-weight: 100;
+    text-transform: capitalize;
   }
 
   h2 {

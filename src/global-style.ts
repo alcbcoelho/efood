@@ -41,8 +41,4 @@ export default createGlobalStyle`
     .text-align-center {
         text-align: center;
     }
-
-    .fs-10 {
-        font-size: 10px;
-    }
 `;

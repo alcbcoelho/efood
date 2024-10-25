@@ -1,18 +1,21 @@
 declare type MenuItem = {
   id: number;
-  name: string;
-  image: string;
-  description: string;
+  nome: string;
+  foto: string;
+  preco: number;
+  descricao: string;
+  porcao: string;
 };
 
 declare type Restaurant = {
   id: number;
-  name: string;
-  image: string;
-  tags: string[];
-  rating: number;
-  description: string;
-  menuItems: MenuItem[];
+  titulo: string;
+  destacado: boolean;
+  tipo: string;
+  avaliacao: number;
+  descricao: string;
+  capa: string;
+  cardapio: MenuItem[];
 };
 
 declare type SocialLink = {
