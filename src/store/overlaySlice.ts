@@ -3,23 +3,16 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 type InitialState = {
   visibility: boolean;
-  menuItemToRender: MenuItem;
+  menuItemToRender?: MenuItem;
 };
 
 const initialState: InitialState = {
   visibility: false,
-  menuItemToRender: {
-    id: 0,
-    nome: "",
-    foto: "",
-    preco: 0,
-    descricao: "",
-    porcao: ""
-  }
+  menuItemToRender: undefined
 };
 
-const modalSlice = createSlice({
-  name: "modal",
+const overlaySlice = createSlice({
+  name: "overlay",
   initialState,
   reducers: {
     setVisibility: (state, action: PayloadAction<boolean>) => {
@@ -27,9 +20,13 @@ const modalSlice = createSlice({
     },
     renderMenuItem: (state, action: PayloadAction<MenuItem>) => {
       state.menuItemToRender = action.payload;
+    },
+    renderCartDisplay: (state) => {
+      state.menuItemToRender = undefined;
     }
   }
 });
 
-export const { setVisibility, renderMenuItem } = modalSlice.actions;
-export default modalSlice.reducer;
+export const { setVisibility, renderCartDisplay, renderMenuItem } =
+  overlaySlice.actions;
+export default overlaySlice.reducer;

@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import modalReducer from "./modalSlice";
+import overlayReducer from "./overlaySlice";
+import cartReducer from "./cartSlice";
 
 import api from "../services/api";
 
 export const store = configureStore({
   reducer: {
-    modal: modalReducer,
+    cart: cartReducer,
+    overlay: overlayReducer,
     [api.reducerPath]: api.reducer
   },
   middleware: (getDefaultMiddleware) =>

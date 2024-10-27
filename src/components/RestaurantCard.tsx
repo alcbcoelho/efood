@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { PiStarFill } from "react-icons/pi";
 
 import * as s from "./styles/RestaurantCard";
+import { FlexContainer } from "../containers/styles/FlexContainer";
 
 import { colors } from "../global-style";
 
@@ -26,15 +27,15 @@ export default function RestaurantCard({
       </s.TagContainer>
       <s.CardImage src={image} alt={name} />
       <s.CardBody>
-        <s.FlexContainer flexDirection="column" height="100%">
+        <FlexContainer flexDirection="column" alignItems="flex-start">
           <div>
-            <s.FlexContainer>
+            <FlexContainer>
               <h2 className="display-text">{name}</h2>
               <div className="rating-container">
                 <span className="display-text">{rating}</span>
                 <PiStarFill color={colors.gold} size="20px" />
               </div>
-            </s.FlexContainer>
+            </FlexContainer>
             <p>{description}</p>
           </div>
           <div>
@@ -45,7 +46,7 @@ export default function RestaurantCard({
               Saiba mais
             </button>
           </div>
-        </s.FlexContainer>
+        </FlexContainer>
       </s.CardBody>
     </s.Card>
   );

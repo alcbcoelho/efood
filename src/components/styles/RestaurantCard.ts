@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
-import { colors } from "../../global-style";
+import { FlexContainer } from "../../containers/styles/FlexContainer";
 
-interface FlexContainerProps {
-  flexDirection?: "row" | "column";
-  height?: string;
-}
+import { colors } from "../../global-style";
 
 interface TagProps {
   capitalize?: boolean;
@@ -59,13 +56,10 @@ const CardBody = styled.div`
     background-color: ${colors.darksalmon};
     border: none;
   }
-`;
 
-const FlexContainer = styled.div<FlexContainerProps>`
-  display: flex;
-  flex-direction: ${({ flexDirection }) => flexDirection || "row"};
-  justify-content: space-between;
-  height: ${({ height }) => height || "auto"};
+  > ${FlexContainer} {
+    height: 100%;
+  }
 `;
 
 const TagContainer = styled.div`
@@ -89,4 +83,4 @@ const Tag = styled.span<TagProps>`
   }
 `;
 
-export { Card, CardImage, CardBody, FlexContainer, Tag, TagContainer };
+export { Card, CardImage, CardBody, Tag, TagContainer };

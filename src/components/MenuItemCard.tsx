@@ -1,10 +1,13 @@
 import { useDispatch } from "react-redux";
 
-import { renderMenuItem, setVisibility } from "../store/modalSlice";
+import {
+  renderMenuItem,
+  setVisibility as setOverlayVisibility
+} from "../store/overlaySlice";
 
 import * as s from "./styles/MenuItemCard";
 import { Button } from "./styles/Button";
-import { FlexContainer } from "./styles/RestaurantCard";
+import { FlexContainer } from "../containers/styles/FlexContainer";
 
 type Props = MenuItem;
 
@@ -14,13 +17,13 @@ export default function MenuItemCard(props: Props) {
   const dispatch = useDispatch();
 
   const renderOnModal = (menuItem: MenuItem) => {
-    dispatch(setVisibility(true));
+    dispatch(setOverlayVisibility(true));
     dispatch(renderMenuItem(menuItem));
   };
 
   return (
     <s.Card>
-      <FlexContainer flexDirection="column" height="100%">
+      <FlexContainer flexDirection="column" alignItems="normal">
         <s.CardImage src={image} alt={name} />
         <div>
           <h3>{name}</h3>

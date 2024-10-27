@@ -1,55 +1,66 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { RootState } from "../store";
-
-import { setVisibility as setModalVisibility } from "../store/modalSlice";
+import { addItem as addItemToCart } from "../store/cartSlice";
+import {
+  setVisibility as setModalVisibility,
+  renderCartDisplay
+} from "../store/overlaySlice";
 
 import { TfiClose } from "react-icons/tfi";
 
 import * as s from "./styles/Modal";
 import { Button } from "./styles/Button";
-import { formatPrice } from "../utils";
+import { IconButton } from "./styles/IconButton";
 import { colors } from "../global-style";
+
+import { formatPrice } from "../utils";
 
 interface Props {
   menuItemToRender: MenuItem;
 }
 
-export default function Modal({
-  menuItemToRender: {
+export default function Modal({ menuItemToRender }: Props) {
+  const dispatch = useDispatch();
+
+  const handlePurchase = () => {
+    dispatch(addItemToCart(menuItemToRender));
+    dispatch(renderCartDisplay());
+  };
+
+  const {
     foto: image,
     nome: name,
     descricao: description,
     porcao: dishSize,
     preco
-  }
-}: Props) {
-  const visibility = useSelector((state: RootState) => state.modal.visibility);
-  const dispatch = useDispatch();
+  } = menuItemToRender;
 
   const price = formatPrice(preco);
 
-  const closeModal = () => {
-    dispatch(setModalVisibility(false));
-  };
-
-  if (visibility)
-    return (
-      <s.Overlay onClick={closeModal}>
-        <s.Modal className="container" onClick={(e) => e.stopPropagation()}>
-          <img src={image} alt={name} />
-          <div>
-            <h3>{name}</h3>
-            <p>{description}</p>
-            <p>Serve: {dishSize}</p>
-            <Button type="button" title="Adicionar ao carrinho">
-              Adicionar ao carrinho - {price}
-            </Button>
-          </div>
-          <s.CloseButton type="button" onClick={closeModal} title="Fechar">
-            <TfiClose size="16px" color={colors.white} />
-          </s.CloseButton>
-        </s.Modal>
-      </s.Overlay>
-    );
+  return (
+    <s.Modal className="container" onClick={(e) => e.stopPropagation()}>
+      <img src={image} alt={name} />
+      <div>
+        <h3>{name}</h3>
+        <p>{description}</p>
+        <p>Serve: {dishSize}</p>
+        <Button
+          type="button"
+          title="Adicionar ao carrinho"
+          onClick={handlePurchase}
+        >
+          Adicionar ao carrinho - {price}
+        </Button>
+      </div>
+      <IconButton
+        top
+        right
+        type="button"
+        onClick={() => setModalVisibility(false)}
+        title="Fechar"
+      >
+        <TfiClose size="16px" color={colors.white} />
+      </IconButton>
+    </s.Modal>
+  );
 }
