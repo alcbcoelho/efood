@@ -27,7 +27,11 @@ export default function RestaurantCard({
       </s.TagContainer>
       <s.CardImage src={image} alt={name} />
       <s.CardBody>
-        <FlexContainer flexDirection="column" alignItems="flex-start">
+        <FlexContainer
+          flexDirection="column"
+          alignItems="flex-start"
+          fullHeight
+        >
           <div>
             <FlexContainer>
               <h2 className="display-text">{name}</h2>
@@ -40,6 +44,7 @@ export default function RestaurantCard({
           </div>
           <div>
             <button
+              className="button--primary"
               type="button"
               onClick={() => navigate(`/restaurante/${id}`)}
             >

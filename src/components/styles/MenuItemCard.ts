@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { FlexContainer } from "../../containers/styles/FlexContainer";
-
 import { colors } from "../../global-style";
 
 const Card = styled.div`
@@ -12,6 +10,7 @@ const Card = styled.div`
 
   h3 {
     margin-top: 8px;
+    font-size: 16px;
     font-weight: 900;
   }
 
@@ -19,10 +18,6 @@ const Card = styled.div`
     margin: 8px 0;
     font-size: 14px;
     line-height: 22px;
-  }
-
-  > ${FlexContainer} {
-    height: 100%;
   }
 `;
 

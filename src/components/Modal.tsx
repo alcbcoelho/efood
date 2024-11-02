@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 
-import { addItem as addItemToCart } from "../store/cartSlice";
+import { addItem as addItemToCart } from "../store/reducers/cartSlice";
 import {
   setVisibility as setModalVisibility,
-  renderCartDisplay
-} from "../store/overlaySlice";
+  renderSidebar
+} from "../store/reducers/overlaySlice";
 
 import { TfiClose } from "react-icons/tfi";
 
@@ -24,7 +24,7 @@ export default function Modal({ menuItemToRender }: Props) {
 
   const handlePurchase = () => {
     dispatch(addItemToCart(menuItemToRender));
-    dispatch(renderCartDisplay());
+    dispatch(renderSidebar());
   };
 
   const {
@@ -56,7 +56,7 @@ export default function Modal({ menuItemToRender }: Props) {
         top
         right
         type="button"
-        onClick={() => setModalVisibility(false)}
+        onClick={() => dispatch(setModalVisibility(false))}
         title="Fechar"
       >
         <TfiClose size="16px" color={colors.white} />

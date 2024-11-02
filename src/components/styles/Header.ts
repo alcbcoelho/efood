@@ -13,12 +13,21 @@ const Header = styled.header`
     justify-content: space-between;
     align-items: center;
 
+    .flex-item {
+      flex-basis: 200px;
+    }
+
     a,
     button {
       font-size: 18px;
       font-weight: 900;
       color: ${colors.darksalmon};
       text-decoration: none;
+    }
+
+    h1 {
+      text-align: center;
+      flex-basis: auto;
     }
 
     button {

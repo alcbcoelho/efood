@@ -4,11 +4,12 @@ import { PayloadAction } from "@reduxjs/toolkit";
 type InitialState = {
   visibility: boolean;
   menuItemToRender?: MenuItem;
+  closeable: boolean;
 };
 
 const initialState: InitialState = {
   visibility: false,
-  menuItemToRender: undefined
+  closeable: true
 };
 
 const overlaySlice = createSlice({
@@ -18,15 +19,18 @@ const overlaySlice = createSlice({
     setVisibility: (state, action: PayloadAction<boolean>) => {
       state.visibility = action.payload;
     },
+    setCloseable: (state, action: PayloadAction<boolean>) => {
+      state.closeable = action.payload;
+    },
     renderMenuItem: (state, action: PayloadAction<MenuItem>) => {
       state.menuItemToRender = action.payload;
     },
-    renderCartDisplay: (state) => {
+    renderSidebar: (state) => {
       state.menuItemToRender = undefined;
     }
   }
 });
 
-export const { setVisibility, renderCartDisplay, renderMenuItem } =
+export const { setVisibility, setCloseable, renderSidebar, renderMenuItem } =
   overlaySlice.actions;
 export default overlaySlice.reducer;

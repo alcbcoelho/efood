@@ -6,10 +6,9 @@ export const colors = {
   lightsalmon: "#fff8f2",
   salmon: "#ffebd9",
   white: "#fff",
-  black: "#000"
+  black: "#000",
+  graphite: "#4b4b4b"
 };
-
-// 10, 12, 14, 16, 18, 32, 36
 
 export default createGlobalStyle`
     * {
@@ -28,8 +27,52 @@ export default createGlobalStyle`
         background-color: ${colors.lightsalmon};
     }
 
+    h3 {
+        font-size: 18px;
+    }
+
     button {
         cursor: pointer;
+
+        &.&--primary {
+            padding: 4px 6px;
+            font-size: 14px;
+            font-weight: 700;
+            color: ${colors.salmon};
+            background-color: ${colors.darksalmon};
+            border: none;
+            transition: all ease-in 0.1s;
+
+            &:hover {
+                background-color: ${colors.salmon};
+                color: ${colors.white};
+            }
+        }
+    }
+
+    input {
+        padding: 8px;
+        color: ${colors.graphite};
+        background-color: ${colors.salmon};
+        height: 32px;
+        width: 100%;
+        border: none;
+        font-size: 14px;
+        font-weight: 700;
+
+        &:focus {
+            outline-color: ${colors.darksalmon}
+        }
+
+        &.error {
+            border: 2px ${colors.black} solid;
+            border-radius: 4px;
+        }
+    }
+
+    label {
+        font-size: 14px;
+        font-weight: 700;
     }
         
     .container {
@@ -40,5 +83,9 @@ export default createGlobalStyle`
 
     .text-align-center {
         text-align: center;
+    }
+
+    .hidden {
+        display: none;
     }
 `;
