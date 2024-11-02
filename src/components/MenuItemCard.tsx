@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   renderMenuItem,
   setVisibility as setOverlayVisibility
-} from "../store/overlaySlice";
+} from "../store/reducers/overlaySlice";
 
 import * as s from "./styles/MenuItemCard";
 import { Button } from "./styles/Button";
@@ -23,9 +23,9 @@ export default function MenuItemCard(props: Props) {
 
   return (
     <s.Card>
-      <FlexContainer flexDirection="column" alignItems="normal">
-        <s.CardImage src={image} alt={name} />
+      <FlexContainer flexDirection="column" alignItems="normal" fullHeight>
         <div>
+          <s.CardImage src={image} alt={name} />
           <h3>{name}</h3>
           <p>{description}</p>
         </div>

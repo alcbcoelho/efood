@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { FlexContainer } from "../../containers/styles/FlexContainer";
-
 import { colors } from "../../global-style";
 
 interface TagProps {
@@ -46,19 +44,8 @@ const CardBody = styled.div`
 
   p {
     margin: 16px 0;
-  }
-
-  button {
-    padding: 4px 6px;
     font-size: 14px;
-    font-weight: 700;
-    color: ${colors.salmon};
-    background-color: ${colors.darksalmon};
-    border: none;
-  }
-
-  > ${FlexContainer} {
-    height: 100%;
+    line-height: 22px;
   }
 `;
 

@@ -3,10 +3,12 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 type initialState = {
   items: MenuItem[];
+  purchaseStatus: "pending" | "concluded";
 };
 
 const initialState: initialState = {
-  items: []
+  items: [],
+  purchaseStatus: "pending"
 };
 
 const cartSlice = createSlice({
@@ -21,9 +23,16 @@ const cartSlice = createSlice({
     },
     removeAllItems: (state) => {
       state.items = [];
+    },
+    setPurchaseStatus: (
+      state,
+      action: PayloadAction<"pending" | "concluded">
+    ) => {
+      state.purchaseStatus = action.payload;
     }
   }
 });
 
-export const { addItem, removeItem, removeAllItems } = cartSlice.actions;
+export const { addItem, setPurchaseStatus, removeItem, removeAllItems } =
+  cartSlice.actions;
 export default cartSlice.reducer;

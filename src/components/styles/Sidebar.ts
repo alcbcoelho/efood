@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { colors } from "../../global-style";
 import { FlexContainer } from "../../containers/styles/FlexContainer";
 
-const CartBar = styled.aside`
+const Sidebar = styled.aside`
   position: absolute;
   top: 0;
   right: 0;
@@ -15,17 +15,23 @@ const CartBar = styled.aside`
   color: ${colors.salmon};
   background-color: ${colors.darksalmon};
 
+  h4 {
+    margin-bottom: 16px;
+  }
+`;
+
+const Cart = styled.div`
   li {
     margin-bottom: 16px;
 
-    &:last-of-type {
-      margin-bottom: 40px;
-    }
-
-    div {
+    > div {
       position: relative;
+      padding: 8px 8px 12px;
       color: ${colors.darksalmon};
       background-color: ${colors.salmon};
+
+      display: flex;
+      gap: 8px;
 
       img {
         display: block;
@@ -33,22 +39,31 @@ const CartBar = styled.aside`
         width: 80px;
         object-fit: cover;
       }
+
+      h3 {
+        margin-bottom: 16px;
+      }
     }
+
+    &:last-of-type {
+      margin-bottom: 40px;
+    }
+  }
+
+  span {
+    font-size: 14px;
   }
 
   ${FlexContainer} {
     margin-bottom: 16px;
+
+    span {
+      font-weight: 700;
+    }
   }
 `;
 
-const CartItem = styled.div`
-  display: flex;
-  gap: 8px;
-
-  padding: 8px 8px 12px;
-`;
-
-const Message = styled.p`
+const MessageIfEmpty = styled.p`
   font-size: 12px;
   max-width: 75%;
   margin: 0 auto;
@@ -57,4 +72,10 @@ const Message = styled.p`
   font-weight: 100;
 `;
 
-export { CartBar, CartItem, Message };
+const OrderConfirmation = styled.div`
+  p {
+    margin-bottom: 24px;
+  }
+`;
+
+export { Cart, MessageIfEmpty, OrderConfirmation, Sidebar };

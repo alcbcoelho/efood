@@ -4,8 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import { RootState } from "../store";
 import {
   setVisibility as setOverlayVisibility,
-  renderCartDisplay
-} from "../store/overlaySlice";
+  renderSidebar
+} from "../store/reducers/overlaySlice";
 
 import Logo from "./Logo";
 
@@ -18,17 +18,21 @@ export default function Header() {
 
   const openCartDisplay = () => {
     dispatch(setOverlayVisibility(true));
-    dispatch(renderCartDisplay());
+    dispatch(renderSidebar());
   };
 
   return pathname !== "/" ? (
     <s.Header>
       <div className="container flex-container">
-        <Link to="/">Restaurantes</Link>
+        <div className="flex-item">
+          <Link to="/">Restaurantes</Link>
+        </div>
         <Logo />
-        <button type="button" onClick={openCartDisplay}>
-          {cartItems.length} produto(s) no carrinho
-        </button>
+        <div className="flex-item">
+          <button type="button" onClick={openCartDisplay}>
+            {cartItems.length} produto(s) no carrinho
+          </button>
+        </div>
       </div>
     </s.Header>
   ) : (

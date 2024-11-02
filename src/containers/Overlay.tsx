@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../store";
 
-import { setVisibility as setOverlayVisibility } from "../store/overlaySlice";
+import { setVisibility as setOverlayVisibility } from "../store/reducers/overlaySlice";
+import { changeElementToRender } from "../store/reducers/sidebarSlice";
 
 import Modal from "../components/Modal";
-import CartDisplay from "../components/CartDisplay";
+import Sidebar from "../components/Sidebar";
 
 import * as s from "./styles/Overlay";
 
@@ -13,13 +14,16 @@ export default function Overlay() {
   const menuItem = useSelector(
     (state: RootState) => state.overlay.menuItemToRender
   );
-  const visibility = useSelector(
-    (state: RootState) => state.overlay.visibility
+  const overlayState = useSelector((state: RootState) => state.overlay);
+  const { visibility, closeable } = overlayState;
+  const purchaseStatus = useSelector(
+    (state: RootState) => state.cart.purchaseStatus
   );
   const dispatch = useDispatch();
 
   const closeOverlay = () => {
-    dispatch(setOverlayVisibility(false));
+    if (closeable) dispatch(setOverlayVisibility(false));
+    if (purchaseStatus === "concluded") dispatch(changeElementToRender("cart"));
   };
 
   if (visibility)
@@ -28,7 +32,7 @@ export default function Overlay() {
         {menuItem ? (
           <Modal menuItemToRender={menuItem} />
         ) : (
-          <CartDisplay onClick={(e) => e.stopPropagation()} />
+          <Sidebar onClick={(e) => e.stopPropagation()} />
         )}
       </s.Overlay>
     );

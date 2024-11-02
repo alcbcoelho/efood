@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import overlayReducer from "./overlaySlice";
-import cartReducer from "./cartSlice";
+import overlayReducer from "./reducers/overlaySlice";
+import cartReducer from "./reducers/cartSlice";
+import sidebarReducer from "./reducers/sidebarSlice";
 
 import api from "../services/api";
 
@@ -9,6 +10,7 @@ export const store = configureStore({
   reducer: {
     cart: cartReducer,
     overlay: overlayReducer,
+    sidebar: sidebarReducer,
     [api.reducerPath]: api.reducer
   },
   middleware: (getDefaultMiddleware) =>
